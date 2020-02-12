@@ -1,0 +1,13 @@
+C:\Users\Ali\source\repos\Proje\proje\bin\Debug\proje.exe.config
+C:\Users\Ali\source\repos\Proje\proje\bin\Debug\proje.exe
+C:\Users\Ali\source\repos\Proje\proje\bin\Debug\proje.pdb
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.csprojAssemblyReference.cache
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.Form1.resources
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.Properties.Resources.resources
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.csproj.GenerateResource.cache
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.csproj.CoreCompileInputs.cache
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.exe
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.pdb
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.Form2.resources
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.Form3.resources
+C:\Users\Ali\source\repos\Proje\proje\obj\Debug\proje.Form4.resources
