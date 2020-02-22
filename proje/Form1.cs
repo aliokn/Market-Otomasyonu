@@ -308,10 +308,11 @@ namespace proje
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {   if (e.RowIndex != -1)
+            {
            a=dataGridView1.Rows[e.RowIndex].Cells[4].FormattedValue.ToString();
            b = Convert.ToDouble(a);
-            
+            }
         }
 
         private void SonSatis_Click(object sender, EventArgs e)
@@ -368,13 +369,7 @@ namespace proje
             baglanti.Close();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-           
-            /*kayit();
-            artma();*/
-            
-        }
+     
         
     }
 }
