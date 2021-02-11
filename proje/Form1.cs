@@ -773,11 +773,12 @@ namespace proje
                                     {
                                         oCell.Value = Convert.ChangeType(sCells[i],
                                                               oCell.ValueType);
-                                       
+                                        //  oCell.Style.BackColor = Color.Tomato;
                                     }
                                     else
                                         iFail++;
-                                   
+                                    //only traps a fail if the data has changed 
+                                    //and you are pasting into a read only cell
                                 }
                             }
                             else
@@ -886,11 +887,12 @@ namespace proje
                                     {
                                         oCell.Value = Convert.ChangeType(sCells[i],
                                                               oCell.ValueType);
-                                       
+                                        //  oCell.Style.BackColor = Color.Tomato;
                                     }
                                     else
                                         iFail++;
-                                    
+                                    //only traps a fail if the data has changed 
+                                    //and you are pasting into a read only cell
                                 }
                             }
                             else
