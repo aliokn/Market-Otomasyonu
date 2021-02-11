@@ -22,7 +22,7 @@ namespace proje
             this.Text = "Son Satış";
             
         }
-        SqlConnection baglanti = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Pos;Integrated Security=True;");
+        SqlConnection baglanti = new SqlConnection(Islm.adrs);
         double toplam=0;
         int sayi;
         int max;
@@ -83,8 +83,10 @@ namespace proje
         private void EskiGetir()
         {
             baglanti.Open();
-            SqlCommand cmd1 = new SqlCommand(query, baglanti);
-            cmd1.CommandType = CommandType.Text;
+            SqlCommand cmd1 = new SqlCommand(query, baglanti)
+            {
+                CommandType = CommandType.Text
+            };
 
             string a = cmd1.ExecuteScalar().ToString();
             sayi = Convert.ToInt32(a);
@@ -123,6 +125,34 @@ namespace proje
             }
             baglanti.Close();
             Topla();
+        }
+
+        private void SeciliGetir()
+        {
+            dataGridView1.Rows.Clear();
+            toplam = 0;    
+            baglanti.Open();
+
+
+            SqlCommand kmt = new SqlCommand("Select BarkodNo,Ad,Miktar,Fiyat,Tarih,ToplamFiyat,FisNo from Fisci where FisNo=@ad", baglanti);
+            kmt.Parameters.AddWithValue("@ad", Convert.ToInt32(textBox1.Text));
+            SqlDataReader dr = kmt.ExecuteReader();
+            while (dr.Read())
+            {
+
+                dataGridView1.Rows.Add(dr["BarkodNo"], dr["Ad"], dr["Miktar"], dr["Fiyat"], dr["ToplamFiyat"]);
+                Tarihi.Text = dr["Tarih"].ToString();
+                Fis.Text = dr["FisNo"].ToString();
+
+            }
+            
+            baglanti.Close();
+            Topla();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SeciliGetir();
         }
     }
 }

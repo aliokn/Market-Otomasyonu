@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 using System.Data.SqlClient;
 namespace proje
 {
@@ -17,16 +18,21 @@ namespace proje
             
             InitializeComponent();
             this.Text = "Yeni Ürün";
-           
+            comboBox1.Items.Add("Tekel");
+            comboBox1.Items.Add("Manav");
+            comboBox1.Items.Add("Temel Ürün");
 
         }
         
-        SqlConnection baglanti = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Pos;Integrated Security=True;");
+        SqlConnection baglanti = new SqlConnection(Islm.adrs);
         
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            textBox2.CharacterCasing = CharacterCasing.Upper;
-            textBox1.Text = Form1.kopya;
+
+
+            textBox2.Text = textBox2.Text.ToUpper(new CultureInfo("tr-TR", false));
+            textBox2.SelectionStart = textBox2.Text.Length;
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -38,17 +44,19 @@ namespace proje
         private void button1_Click(object sender, EventArgs e)
         {
 
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("insert into Tablo (id,ad,fiyat,miktar) values(@id,@Ad,@Fiyat,1)", baglanti);
-            if (textBox3.Text == "")
+            
+            SqlCommand komut = new SqlCommand("insert into Tablo (id,ad,fiyat,miktar,sinif) values(@id,@Ad,@Fiyat,@miktar,@tr)", baglanti);
+            if (textBox3.Text == ""||textBox1.Text==""||textBox2.Text=="" || comboBox1.Text=="")
             {
-                MessageBox.Show("LÜTFEN FİYAT GİRİN");
+                MessageBox.Show("LÜTFEN GEREKLİ BİLGİLERİ GİRİN");
             }
             else{
+                baglanti.Open();
             komut.Parameters.AddWithValue("@id", textBox1.Text);
             komut.Parameters.AddWithValue("@Ad", textBox2.Text);
             komut.Parameters.AddWithValue("@Fiyat",Convert.ToDouble(textBox3.Text=textBox3.Text.Replace('.',',')));
-
+            komut.Parameters.AddWithValue("@miktar", textBox4.Text);
+            komut.Parameters.AddWithValue("@tr", comboBox1.Text);
             
                 komut.ExecuteNonQuery();
                 MessageBox.Show("Kaydedildi!");
@@ -91,10 +99,22 @@ namespace proje
 
         private void Form2_Shown(object sender, EventArgs e)
         {
-            textBox2.Focus();
+           
         }
 
         private void Form2_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = Form1.kopya;
+            this.ActiveControl = textBox2;
+
+        }
+
+        private void label4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
